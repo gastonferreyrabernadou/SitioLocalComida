@@ -7,11 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import localcomida.pikda.dominio.entidades.Rol;
 import localcomida.pikda.dominio.entidades.Cliente;
 import localcomida.pikda.dominio.entidades.Pedido;
-import localcomida.pikda.dominio.excepciones.excepcionPIKDA;
-import localcomida.pikda.dominio.excepciones.excepcionNoExiste;
-import localcomida.pikda.dominio.excepciones.excepcionExiste;
-import localcomida.pikda.dominio.repositorios.IRepositorioClientes;
-import localcomida.pikda.dominio.repositorios.IRepositorioPedidos;
+import localcomida.pikda.excepciones.excepcionPIKDA;
+import localcomida.pikda.excepciones.excepcionNoExiste;
+import localcomida.pikda.excepciones.excepcionExiste;
+import localcomida.pikda.repositorios.IRepositorioClientes;
+import localcomida.pikda.repositorios.IRepositorioPedidos;
 
 public class ServicioMiCuenta implements IServicioMiCuenta {
     @Autowired
@@ -28,13 +28,13 @@ public class ServicioMiCuenta implements IServicioMiCuenta {
 
     @Override
     public void registrarCliente(Cliente cliente)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         cliente.setActivo(true);
 
         Cliente clienteExistente = repositorioClientes.findById(cliente.getNombreUsuario()).orElse(null);
 
         if (clienteExistente != null) {
-            throw new ExcepcionYaExiste("El cliente ya existe.");
+            throw new excepcionExiste("El cliente ya existe.");
         }
 
         cliente.getRoles().add(new Rol("cliente"));
@@ -44,13 +44,13 @@ public class ServicioMiCuenta implements IServicioMiCuenta {
 
     @Override
     public void modificarCliente(Cliente cliente)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         cliente.setActivo(true);
 
         Cliente clienteExistente = repositorioClientes.findById(cliente.getNombreUsuario()).orElse(null);
 
         if (clienteExistente == null) {
-            throw new ExcepcionNoExiste("El cliente no existe.");
+            throw new excepcionNoExiste("El cliente no existe.");
         }
 
         cliente.getRoles().clear();
@@ -65,11 +65,11 @@ public class ServicioMiCuenta implements IServicioMiCuenta {
     @Override
     //@Transactional
     public void eliminarCliente(String nombreUsuario)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         Cliente clienteExistente = repositorioClientes.findById(nombreUsuario).orElse(null);
 
         if (clienteExistente == null) {
-            throw new ExcepcionNoExiste("El cliente no existe.");
+            throw new excepcionExiste("El cliente no existe.");
         }
 
         List<Pedido> pedidos = repositorioPedidos.findByCliente_NombreUsuario(nombreUsuario);

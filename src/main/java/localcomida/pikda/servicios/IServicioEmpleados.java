@@ -2,7 +2,7 @@ package localcomida.pikda.servicios;
 
 import java.util.List;
 import localcomida.pikda.dominio.entidades.Empleado;
-import localcomida.pikda.dominio.excepciones.excepcionPIKDA;
+import localcomida.pikda.excepciones.excepcionPIKDA;
 
 public interface IServicioEmpleados {
 

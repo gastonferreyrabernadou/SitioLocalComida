@@ -5,10 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import localcomida.pikda.dominio.entidades.Producto;
-import localcomida.pikda.dominio.excepciones.excepcionPIKDA;
-import localcomida.pikda.dominio.excepciones.excepcionNoExiste;
-import localcomida.pikda.dominio.excepciones.excepcionExiste;
-import localcomida.pikda.dominio.excepciones.excepcionTieneVinculo;
+import localcomida.pikda.excepciones.excepcionPIKDA;
+import localcomida.pikda.excepciones.excepcionNoExiste;
+import localcomida.pikda.excepciones.excepcionExiste;
+import localcomida.pikda.excepciones.excepcionTieneVinculo;
 import localcomida.pikda.repositorios.IRepositorioClientes;
 import localcomida.pikda.repositorios.IRepositorioProductos;
 import localcomida.pikda.repositorios.especificaciones.especificacionesProducto;
@@ -32,7 +32,7 @@ public class ServicioProductos implements IServicioProductos{
 
     @Override
     public List<Producto> buscar(String criterio) {
-        return repositorioProductos.findAll(EspecificacionesProducto.buscar(criterio));
+        return repositorioProductos.findAll(especificacionesProducto.buscar(criterio));
     }
 
     @Override
@@ -42,11 +42,11 @@ public class ServicioProductos implements IServicioProductos{
 
     @Override
     public void agregar(Producto producto)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         Producto productoExistente = repositorioProductos.findById(producto.getCodigo()).orElse(null);
 
         if (productoExistente != null) {
-            throw new ExcepcionYaExiste("El producto ya existe.");
+            throw new excepcionExiste("El producto ya existe.");
         }
 
         repositorioProductos.save(producto);
@@ -54,11 +54,11 @@ public class ServicioProductos implements IServicioProductos{
 
     @Override
     public void modificar(Producto producto)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         Producto productoExistente = repositorioProductos.findById(producto.getCodigo()).orElse(null);
 
         if (productoExistente == null) {
-            throw new ExcepcionNoExiste("El producto no existe.");
+            throw new excepcionNoExiste("El producto no existe.");
         }
 
         if (!producto.getTieneImagen()) {
@@ -70,17 +70,17 @@ public class ServicioProductos implements IServicioProductos{
 
     @Override
     public void eliminar(Long codigo)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         Producto productoExistente = repositorioProductos.findById(codigo).orElse(null);
 
         if (productoExistente == null) {
-            throw new ExcepcionNoExiste("El producto no existe.");
+            throw new excepcionNoExiste("El producto no existe.");
         }
 
         try {
             repositorioProductos.deleteById(codigo);
         } catch (DataIntegrityViolationException e) {
-            throw new ExcepcionTieneVinculos("El producto tiene pedidos.");
+            throw new excepcionTieneVinculo("El producto tiene pedidos.");
         }
     }
 

@@ -1,5 +1,4 @@
-
-package localcomida.pikda.dominio;
+package localcomida.pikda.excepciones;
 
 public class excepcionTieneVinculo extends excepcionPIKDA{
     

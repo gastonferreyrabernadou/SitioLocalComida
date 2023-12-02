@@ -1,4 +1,4 @@
-package localcomida.pikda.repositorio;
+package localcomida.pikda.repositorios;
 
 import localcomida.pikda.dominio.entidades.Producto;
 import java.util.List;
@@ -12,22 +12,22 @@ import org.springframework.lang.Nullable;
 
 public interface IRepositorioProductos extends JpaRepository<Producto, Long>, JpaSpecificationExecutor<Producto> {
     
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
-    // List<Producto> findAll();
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
+    List<Producto> findAll();
 
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
-    // List<Producto> findAll(@Nullable Specification<Producto> spec);
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
+    List<Producto> findAll(@Nullable Specification<Producto> spec);
 
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
-    // Optional<Producto> findById(Long id);
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
+    Optional<Producto> findById(Long id);
 
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
-    // List<Producto> findByDisponibleTrueOrderByCategoria_Nombre();
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
+    List<Producto> findByDisponibleTrueOrderByCategoria_Nombre();
 
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
-    // List<Producto> findByDisponibleTrueAndCategoria_Codigo(Long codigoCategoria);
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "categoria" })
+    List<Producto> findByDisponibleTrueAndCategoria_Codigo(Long codigoCategoria);
 
 }

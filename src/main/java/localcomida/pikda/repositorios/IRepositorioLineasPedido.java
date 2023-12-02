@@ -1,4 +1,4 @@
-package localcomida.pikda.repositorio;
+package localcomida.pikda.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import localcomida.pikda.dominio.entidades.Pedido;

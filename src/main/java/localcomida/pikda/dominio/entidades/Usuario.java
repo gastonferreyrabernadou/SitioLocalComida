@@ -1,4 +1,4 @@
-package localcomida.pikda.dominio;
+package localcomida.pikda.dominio.entidades;
 
 import java.util.HashSet;
 import java.util.Set;

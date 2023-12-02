@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 import localcomida.pikda.dominio.entidades.Pedido;
-import localcomida.pikda.dominio.excepciones.excepcionPIKDA;
-import localcomida.pikda.dominio.excepciones.excepcionNoExiste;
+import localcomida.pikda.dominio.entidades.Producto;
+import localcomida.pikda.dominio.entidades.Cliente;
+import localcomida.pikda.excepciones.excepcionPIKDA;
+import localcomida.pikda.excepciones.excepcionNoExiste;
 import localcomida.pikda.repositorios.IRepositorioClientes;
-import localcomida.pikda.repositorios.IRepositorioLineasPedidos;
+import localcomida.pikda.repositorios.IRepositorioLineasPedido;
 import localcomida.pikda.repositorios.IRepositorioPedidos;
 import localcomida.pikda.repositorios.IRepositorioProductos;
 
@@ -112,14 +114,14 @@ public class ServicioMiPedido implements IServicioMiPedido{
     @Override
     @Transactional
     public void realizar(String nombreUsuarioCliente)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         if (pedido.getLineas().size() == 0) {
-            throw new ExcepcionLocalComidaRapida("El pedido no tiene líneas.");
+            throw new excepcionPIKDA("El pedido no tiene líneas.");
         }
 
         pedido.setFechaHora(LocalDateTime.now());
 
-        Cliente cliente = repositorioClientes.findById(nombreUsuarioCliente).orElseThrow(() -> new ExcepcionNoExiste("El cliente no existe."));
+        Cliente cliente = repositorioClientes.findById(nombreUsuarioCliente).orElseThrow(() -> new excepcionNoExiste("El cliente no existe."));
         pedido.setCliente(cliente);
 
         Pedido pedidoGuardado = repositorioPedidos.save(pedido);

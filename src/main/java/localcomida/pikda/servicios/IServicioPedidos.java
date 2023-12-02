@@ -3,7 +3,7 @@ package localcomida.pikda.servicios;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import localcomida.pikda.dominio.entidades.Pedido;
-import localcomida.pikda.dominio.excepciones.excepcionPIKDA;
+import localcomida.pikda.excepciones.excepcionPIKDA;
 
 public interface IServicioPedidos {
     

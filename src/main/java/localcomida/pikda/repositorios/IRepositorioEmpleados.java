@@ -1,4 +1,4 @@
-package localcomida.pikda.repositorio;
+package localcomida.pikda.repositorios;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,15 +13,15 @@ import localcomida.pikda.dominio.entidades.Empleado;
 
 public interface IRepositorioEmpleados extends JpaRepository<Empleado, String>, JpaSpecificationExecutor<Empleado> {
     
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles", "legajo" })
-    // List<Empleado> findAll();
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles", "legajo" })
+    List<Empleado> findAll();
 
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles", "legajo" })
-    // List<Empleado> findAll(@Nullable Specification<Empleado> spec);
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles", "legajo" })
+    List<Empleado> findAll(@Nullable Specification<Empleado> spec);
 
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles", "legajo" })
-    // Optional<Empleado> findById(String id);
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles", "legajo" })
+    Optional<Empleado> findById(String id);
 }

@@ -1,4 +1,4 @@
-package localcomida.pikda.repositorio;
+package localcomida.pikda.repositorios;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import localcomida.pikda.dominio.entidades.Cliente;
 
 
-public class IRepositorioClientes extends JpaRepository<Cliente, String> {
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles" })
-    // List<Cliente> findAll();
+public interface IRepositorioClientes extends JpaRepository <Cliente, String> {
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles" })
+    List<Cliente> findAll();
 
-    // @Override
-    // @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles" })
-    // Optional<Cliente> findById(String id);
+    @Override
+    @EntityGraph(type = EntityGraphType.LOAD, attributePaths = { "roles" })
+    Optional<Cliente> findById(String id);
 }

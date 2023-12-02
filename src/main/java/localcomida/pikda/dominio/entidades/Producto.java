@@ -1,4 +1,4 @@
-package localcomida.pikda.dominio;
+package localcomida.pikda.dominio.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

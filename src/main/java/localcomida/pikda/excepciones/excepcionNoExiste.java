@@ -1,4 +1,4 @@
-package localcomida.pikda.dominio;
+package localcomida.pikda.excepciones;
 
 public class excepcionNoExiste extends excepcionPIKDA{
     

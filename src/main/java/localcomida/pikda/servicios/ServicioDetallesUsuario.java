@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import localcomida.pikda.dominio.entidades.Rol;
 import localcomida.pikda.dominio.entidades.Usuario;
-import localcomida.pikda.dominio.repositorios.IRepositorioClientes;
-import localcomida.pikda.dominio.repositorios.IRepositorioEmpleados;
+import localcomida.pikda.repositorios.IRepositorioClientes;
+import localcomida.pikda.repositorios.IRepositorioEmpleados;
 
 
 public class ServicioDetallesUsuario implements UserDetailsService{

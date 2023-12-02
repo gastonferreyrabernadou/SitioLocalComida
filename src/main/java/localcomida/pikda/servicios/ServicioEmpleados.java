@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import localcomida.pikda.dominio.entidades.Rol;
 import localcomida.pikda.dominio.entidades.Empleado;
-import localcomida.pikda.dominio.excepciones.excepcionNoExiste;
-import localcomida.pikda.dominio.excepciones.excepcionExiste;
-import localcomida.pikda.dominio.repositorios.especificaciones.especificacionEmpleado;
-import localcomida.pikda.dominio.repositorios.IRepositorioEmpleados;
+import localcomida.pikda.excepciones.excepcionNoExiste;
+import localcomida.pikda.excepciones.excepcionPIKDA;
+import localcomida.pikda.excepciones.excepcionExiste;
+import localcomida.pikda.repositorios.especificaciones.especificacionesEmpleado;
+import localcomida.pikda.repositorios.IRepositorioEmpleados;
 
 
 public class ServicioEmpleados implements IServicioEmpleados {
@@ -20,7 +21,7 @@ public class ServicioEmpleados implements IServicioEmpleados {
     @Override
     @Transactional
     public List<Empleado> buscar(String criterio) {
-        return repositorioEmpleados.findAll(EspecificacionesEmpleado.buscar(criterio));
+        return repositorioEmpleados.findAll(especificacionesEmpleado.buscar(criterio));
     }
 
     @Override
@@ -30,13 +31,13 @@ public class ServicioEmpleados implements IServicioEmpleados {
 
     @Override
     public void agregar(Empleado empleado)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         empleado.setActivo(true);
 
         Empleado empleadoExistente = repositorioEmpleados.findById(empleado.getNombreUsuario()).orElse(null);
 
         if (empleadoExistente != null) {
-            throw new ExcepcionYaExiste("El empleado ya existe.");
+            throw new excepcionExiste("El empleado ya existe.");
         }
 
         empleado.getRoles().add(new Rol("empleado"));
@@ -48,13 +49,13 @@ public class ServicioEmpleados implements IServicioEmpleados {
 
     @Override
     public void modificar(Empleado empleado)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         empleado.setActivo(true);
 
         Empleado empleadoExistente = repositorioEmpleados.findById(empleado.getNombreUsuario()).orElse(null);
 
         if (empleadoExistente == null) {
-            throw new ExcepcionNoExiste("El empleado no existe.");
+            throw new excepcionNoExiste("El empleado no existe.");
         }
 
         empleado.getRoles().clear();
@@ -71,11 +72,11 @@ public class ServicioEmpleados implements IServicioEmpleados {
 
     @Override
     public void eliminar(String nombreUsuario)
-            throws ExcepcionLocalComidaRapida {
+            throws excepcionPIKDA {
         Empleado empleadoExistente = repositorioEmpleados.findById(nombreUsuario).orElse(null);
 
         if (empleadoExistente == null) {
-            throw new ExcepcionNoExiste("El empleado no existe.");
+            throw new excepcionExiste("El empleado no existe.");
         }
 
         repositorioEmpleados.deleteById(nombreUsuario);

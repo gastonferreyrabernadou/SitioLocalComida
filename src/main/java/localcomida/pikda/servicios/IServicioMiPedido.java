@@ -1,7 +1,7 @@
 package localcomida.pikda.servicios;
 
 import localcomida.pikda.dominio.entidades.Pedido;
-import localcomida.pikda.dominio.excepciones.excepcionPIKDA;
+import localcomida.pikda.excepciones.excepcionPIKDA;
 
 public interface IServicioMiPedido {
     
