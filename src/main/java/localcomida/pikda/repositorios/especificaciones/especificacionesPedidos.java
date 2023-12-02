@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import javax.persistence.criteria.JoinType;
+//import javax.persistence.criteria.JoinType;
 import localcomida.pikda.dominio.entidades.Pedido;
 
 public class especificacionesPedidos {
@@ -52,16 +52,44 @@ public class especificacionesPedidos {
         };
     }
 
+
+    // ERROR: el join<string,jointype> lo reemplacé por join<object, object>
+
+
+    // public static Specification<Pedido> nombreUsuarioClienteContiene(String nombreUsuario) {
+    //     if (nombreUsuario == null) return null;
+
+    //     return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente", JoinType.LEFT).get("nombreUsuario"), "%" + nombreUsuario + "%");
+    // }
+
+    // public static Specification<Pedido> nombreClienteContiene(String nombre) {
+    //     if (nombre == null) return null;
+
+    //     return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente", JoinType.LEFT).get("nombre"), "%" + nombre + "%");
+    // }
+
+    // public static Specification<Pedido> apellidoClienteContiene(String apellido) {
+    //     if (apellido == null) return null;
+
+    //     return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente", JoinType.LEFT).get("apellido"), "%" + apellido + "%");
+    // }
+
     public static Specification<Pedido> nombreUsuarioClienteContiene(String nombreUsuario) {
         if (nombreUsuario == null) return null;
 
-        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente", JoinType.LEFT).get("nombreUsuario"), "%" + nombreUsuario + "%");
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente").get("nombreUsuario"), "%" + nombreUsuario + "%");
     }
 
-    public static Specification<Pedido> nombreCompletoClienteContiene(String nombreCompleto) {
-        if (nombreCompleto == null) return null;
+    public static Specification<Pedido> nombreClienteContiene(String nombre) {
+        if (nombre == null) return null;
 
-        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente", JoinType.LEFT).get("nombreCompleto"), "%" + nombreCompleto + "%");
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente").get("nombre"), "%" + nombre + "%");
+    }
+
+    public static Specification<Pedido> apellidoClienteContiene(String apellido) {
+        if (apellido == null) return null;
+
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.join("cliente").get("apellido"), "%" + apellido + "%");
     }
 
     public static Specification<Pedido> despachado() {
@@ -79,7 +107,8 @@ public class especificacionesPedidos {
             especificacion = especificacion.and(textoNumeroIgualA(criterio)
             .or(textoFechaIgualA(criterio))
             .or(nombreUsuarioClienteContiene(criterio))
-            .or(nombreCompletoClienteContiene(criterio)));
+            .or(nombreClienteContiene(criterio))
+            .or(apellidoClienteContiene(criterio)));
         }
 
         if (filtroDespacho == 1) {

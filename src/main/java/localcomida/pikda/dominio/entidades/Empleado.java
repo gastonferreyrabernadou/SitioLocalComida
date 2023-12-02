@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -16,7 +15,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "empleados")
@@ -234,7 +232,7 @@ public class Empleado extends Usuario{
 
 
         public Legajo() {
-            this(0L, null, null, null, null, null, null, null, null, null, null, null);
+            this(0L, null, null, 0, null, 0, null, null, null, null, null, null);
         }
 
 

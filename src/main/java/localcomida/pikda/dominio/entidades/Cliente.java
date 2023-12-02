@@ -88,7 +88,7 @@ public class Cliente extends Usuario{
     }
 
     public Cliente() {
-        this(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, 0, null, true, null, null, null, null, null, true);
     }
 
     public Cliente(String nombreUsuario, String contrasena, String nombre, String apellido, String correoElectronico, 

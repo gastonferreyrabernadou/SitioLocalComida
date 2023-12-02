@@ -143,7 +143,7 @@ public class Usuario {
     }
 
     public Usuario() {
-        this(null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, 0, null, true);
     }
 
     public Usuario(String nombreUsuario, String contrasena, String nombre, String apellido,
