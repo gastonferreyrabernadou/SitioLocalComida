@@ -8,7 +8,7 @@ import javax.persistence.criteria.Root;
 import localcomida.pikda.dominio.entidades.Producto;
 
 
-public class especificacionesProducto {
+public class especificacionesProductos {
     
     public static Specification<Producto> textoCodigoIgualA(String textoCodigo) {
         if (textoCodigo == null) return null;

@@ -9,7 +9,7 @@ import localcomida.pikda.excepciones.excepcionNoExiste;
 import localcomida.pikda.excepciones.excepcionExiste;
 import localcomida.pikda.excepciones.excepcionTieneVinculo;
 import localcomida.pikda.repositorios.IRepositorioProductos;
-import localcomida.pikda.repositorios.especificaciones.especificacionesProducto;
+import localcomida.pikda.repositorios.especificaciones.especificacionesProductos;
 
 
 public class ServicioProductos implements IServicioProductos{
@@ -30,7 +30,7 @@ public class ServicioProductos implements IServicioProductos{
 
     @Override
     public List<Producto> buscar(String criterio) {
-        return repositorioProductos.findAll(especificacionesProducto.buscar(criterio));
+        return repositorioProductos.findAll(especificacionesProductos.buscar(criterio));
     }
 
     @Override
