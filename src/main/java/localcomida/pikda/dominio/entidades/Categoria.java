@@ -10,7 +10,6 @@ import javax.persistence.Table;
 public class Categoria {
     
     @Id
-    @Min(1000)
     private Long codigo;
 
     @Column(nullable = false, length = 100)

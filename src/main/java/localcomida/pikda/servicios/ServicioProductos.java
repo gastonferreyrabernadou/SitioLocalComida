@@ -3,13 +3,11 @@ package localcomida.pikda.servicios;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
 import localcomida.pikda.dominio.entidades.Producto;
 import localcomida.pikda.excepciones.excepcionPIKDA;
 import localcomida.pikda.excepciones.excepcionNoExiste;
 import localcomida.pikda.excepciones.excepcionExiste;
 import localcomida.pikda.excepciones.excepcionTieneVinculo;
-import localcomida.pikda.repositorios.IRepositorioClientes;
 import localcomida.pikda.repositorios.IRepositorioProductos;
 import localcomida.pikda.repositorios.especificaciones.especificacionesProducto;
 

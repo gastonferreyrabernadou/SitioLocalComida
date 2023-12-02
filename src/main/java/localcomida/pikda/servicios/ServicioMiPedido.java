@@ -2,10 +2,8 @@ package localcomida.pikda.servicios;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 import localcomida.pikda.dominio.entidades.Pedido;
 import localcomida.pikda.dominio.entidades.Producto;
 import localcomida.pikda.dominio.entidades.Cliente;

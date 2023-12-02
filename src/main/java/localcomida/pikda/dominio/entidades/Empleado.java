@@ -1,6 +1,7 @@
 package localcomida.pikda.dominio.entidades;
 
 import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -74,47 +75,47 @@ public class Empleado extends Usuario{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long numero;
 
-        @NotBlank
+        @NotNull
         @Size(max=25)
         @Column(nullable = false, length = 25)
         private String nacionalidad;
 
-        @NotBlank
+        @NotNull
         @Size(max = 10)
         @Column(nullable = false, length = 10)
         private int cedula;
 
-        @NotBlank
+        @NotNull
         @Size(max = 30)
         @Column(nullable = false, length = 30)
         private String grupoSanguineo;
 
-        @NotBlank
+        @NotNull
         @Size(max = 9)
         @Column(nullable = false, length = 9)
         private int telefonoEmergencia;
 
-        @NotBlank
+        @NotNull
         @Size(max = 20)
         @Column(nullable = false, length = 20)
         private String barrio;
 
-        @NotBlank
+        @NotNull
         @Size(max = 30)
         @Column(nullable = false, length = 30)
         private String direccionCalle;
 
-        @NotBlank
+        @NotNull
         @Size(max = 6)
         @Column(nullable = false, length = 6)
         private String direccionNumero;
 
-        @NotBlank
+        @NotNull
         @Size(max = 30)
         @Column(nullable = false, length = 30)
         private String direccionEsquina;
 
-        @NotBlank
+        @NotNull
         @Size(max = 50)
         @Column(nullable = false, length = 50)
         private String direccionComplemento;
@@ -233,7 +234,7 @@ public class Empleado extends Usuario{
 
 
         public Legajo() {
-            this(0L, null, null, null, null, null, null, null, null, null, null);
+            this(0L, null, null, null, null, null, null, null, null, null, null, null);
         }
 
 
@@ -251,12 +252,8 @@ public class Empleado extends Usuario{
             this.direccionEsquina = direccionEsquina;
             this.direccionComplemento = direccionComplemento;
             this.empleado = empleado;
-        }
-
-        
+        }   
 
     }
-
-    
 
 }

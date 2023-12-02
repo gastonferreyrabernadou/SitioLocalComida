@@ -2,8 +2,6 @@ package localcomida.pikda.servicios;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import localcomida.pikda.dominio.entidades.Rol;
 import localcomida.pikda.dominio.entidades.Cliente;
 import localcomida.pikda.dominio.entidades.Pedido;
@@ -63,7 +61,6 @@ public class ServicioMiCuenta implements IServicioMiCuenta {
     }
 
     @Override
-    //@Transactional
     public void eliminarCliente(String nombreUsuario)
             throws excepcionPIKDA {
         Cliente clienteExistente = repositorioClientes.findById(nombreUsuario).orElse(null);
@@ -73,12 +70,6 @@ public class ServicioMiCuenta implements IServicioMiCuenta {
         }
 
         List<Pedido> pedidos = repositorioPedidos.findByCliente_NombreUsuario(nombreUsuario);
-
-        /*if (pedidos.size() > 0) {
-            repositorioPedidos.deleteByCliente_NombreUsuario(nombreUsuario);
-        }
-
-        repositorioClientes.deleteById(nombreUsuario);*/
 
         if (pedidos.size() == 0) {
             repositorioClientes.deleteById(nombreUsuario);

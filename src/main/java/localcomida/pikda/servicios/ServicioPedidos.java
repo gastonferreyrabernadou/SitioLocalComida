@@ -3,12 +3,9 @@ package localcomida.pikda.servicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 import localcomida.pikda.dominio.entidades.Pedido;
 import localcomida.pikda.excepciones.excepcionPIKDA;
 import localcomida.pikda.excepciones.excepcionNoExiste;
-import localcomida.pikda.excepciones.excepcionExiste;
-import localcomida.pikda.repositorios.IRepositorioClientes;
 import localcomida.pikda.repositorios.IRepositorioPedidos;
 import localcomida.pikda.repositorios.especificaciones.especificacionesPedidos;
 

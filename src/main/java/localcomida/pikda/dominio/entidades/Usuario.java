@@ -1,5 +1,6 @@
 package localcomida.pikda.dominio.entidades;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -57,9 +58,13 @@ public class Usuario {
     private int telefono;
 
     @Column(nullable = false)
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     private boolean activo;
+
+    @ManyToMany
+    @JoinTable(joinColumns = { @JoinColumn(name = "usuario_nombre_usuario") }, inverseJoinColumns = { @JoinColumn(name = "rol_nombre_rol") })
+    private Set<Rol> roles;
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -117,11 +122,11 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -133,21 +138,26 @@ public class Usuario {
         this.activo = activo;
     }
 
-    public Usuario(String nombreUsuario, String contrasena, String repetirContrasena, String nombre, String apellido,
-            String correoElectronico, int telefono, LocalDateTime fechaNacimiento, boolean activo) {
+    public Set<Rol> getRoles() {
+        return this.roles;
+    }
+
+    public Usuario() {
+        this(null, null, null, null, null, null, null, null);
+    }
+
+    public Usuario(String nombreUsuario, String contrasena, String nombre, String apellido,
+            String correoElectronico, int telefono, LocalDate fechaNacimiento, boolean activo) {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
-        this.repetirContrasena = repetirContrasena;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.activo = activo;
-    }
 
-    public Usuario() {
-        this(null, null, null, null, null, null, null, null, null);
+        roles = new HashSet<>();
     }
     
 }

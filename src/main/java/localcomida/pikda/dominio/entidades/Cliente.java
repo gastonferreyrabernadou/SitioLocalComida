@@ -1,5 +1,7 @@
 package localcomida.pikda.dominio.entidades;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -85,8 +87,16 @@ public class Cliente extends Usuario{
         this.recibirPromociones = recibirPromociones;
     }
 
-    public Cliente(String barrio, String direccionCalle, String direccionNumero, String direccionEsquina, String direccionComplemento,
+    public Cliente() {
+        this(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    }
+
+    public Cliente(String nombreUsuario, String contrasena, String nombre, String apellido, String correoElectronico, 
+    int telefono, LocalDate fechaNacimiento, boolean activo, String barrio, String direccionCalle, String direccionNumero, String direccionEsquina, String direccionComplemento,
             boolean recibirPromociones) {
+                
+        super(nombreUsuario, contrasena, nombre, apellido, correoElectronico, telefono, fechaNacimiento, activo);   
+        
         this.barrio = barrio;
         this.direccionCalle = direccionCalle;
         this.direccionNumero = direccionNumero;
@@ -94,11 +104,5 @@ public class Cliente extends Usuario{
         this.direccionComplemento = direccionComplemento;
         this.recibirPromociones = recibirPromociones;
     }
-
-    public Cliente() {
-        this(null, null, null, null, null,  null);
-
-    }
-
 
 }

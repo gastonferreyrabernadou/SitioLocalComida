@@ -3,7 +3,6 @@ package localcomida.pikda.servicios;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 import localcomida.pikda.dominio.entidades.Categoria;
 import localcomida.pikda.repositorios.IRepositorioCategorias;
 

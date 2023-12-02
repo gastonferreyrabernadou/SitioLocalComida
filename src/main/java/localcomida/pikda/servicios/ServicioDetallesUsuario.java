@@ -1,7 +1,6 @@
 package localcomida.pikda.servicios;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 import localcomida.pikda.dominio.entidades.Rol;
 import localcomida.pikda.dominio.entidades.Usuario;
 import localcomida.pikda.repositorios.IRepositorioClientes;
@@ -44,6 +42,5 @@ public class ServicioDetallesUsuario implements UserDetailsService{
         }
 
         return new User(usuario.getNombreUsuario(), usuario.getContrasena(), usuario.isActivo(), true, true, true, roles);
-        //return new DetallesUsuario(usuario);
     }
 }
